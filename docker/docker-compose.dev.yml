@@ -7,7 +7,9 @@ services:
       - "../.dev/postgres-data:/var/lib/postgresql/data"
 
   devcms:
-    build: ..
+    build:
+      context: ..
+      network: host
     depends_on:
       - "devdb"
     environment:
@@ -19,6 +21,6 @@ services:
     command: >
       wait-for-it devdb:5432 -- bash
     ports:
-      - 8888:8888
-      - 8889:8889
-      - 8890:8890
+      - 18888:8888
+      - 18889:8889
+      - 18890:8890
